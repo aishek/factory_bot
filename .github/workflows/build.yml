@@ -7,6 +7,7 @@ jobs:
   build:
     name: Ruby ${{ matrix.ruby }} / Rails ${{ matrix.rails }}
     continue-on-error: ${{ matrix.allow_failure || false }}
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     strategy:
       fail-fast: false
       matrix:
